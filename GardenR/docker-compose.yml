@@ -1,0 +1,41 @@
+services:
+  node-red:
+    image: nodered/node-red:latest
+    container_name: node-red
+    ports:
+      - "1880:1880"
+    networks:
+      - smart-lords
+    volumes:
+      - node-red-data:/data
+  influxdb:
+    image: influxdb:latest
+    container_name: influxdb
+    ports:
+      - "8086:8086"
+    networks:
+      - smart-lords
+    volumes:
+      - influxdb-data-var:/var/lib/influxdb2
+      - influxdb-data-etc:/etc/influxdb2
+    #environment:
+      #- DOCKER_INFLUXDB_INIT_MODE=setup
+      #- DOCKER_INFLUXDB_INIT_USERNAME=admin
+      #- DOCKER_INFLUXDB_INIT_PASSWORD=happyFlower2022
+      #- DOCKER_INFLUXDB_INIT_ORG=smart-lords
+      #- DOCKER_INFLUXDB_INIT_BUCKET=gardenr
+  grafana:
+    image: grafana/grafana:latest 
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - smart-lords
+
+volumes:
+  node-red-data:
+  influxdb-data-var:
+  influxdb-data-etc:
+
+networks:
+  smart-lords:

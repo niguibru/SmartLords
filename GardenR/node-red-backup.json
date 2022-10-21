@@ -1,0 +1,1670 @@
+[
+    {
+        "id": "7743896d4583b199",
+        "type": "tab",
+        "label": "Main Flow",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1527ce12d99c5df4",
+        "type": "tab",
+        "label": "Test",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "328f1eeedab9c465",
+        "type": "subflow",
+        "name": "Set Device Info",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 120,
+                "y": 120,
+                "wires": [
+                    {
+                        "id": "65cae0bc0f39d22f"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 600,
+                "y": 60,
+                "wires": [
+                    {
+                        "id": "45651b8e8389243a",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#A6BBCF",
+        "icon": "node-red/debug.svg"
+    },
+    {
+        "id": "2ed4f6cd7dc69bd6",
+        "type": "subflow",
+        "name": "Save to Airtable",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 120,
+                "y": 100,
+                "wires": [
+                    {
+                        "id": "48ab174cf821deac"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 540,
+                "y": 180,
+                "wires": [
+                    {
+                        "id": "efe723a887b9ed42",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#F3B567",
+        "icon": "node-red/leveldb.png"
+    },
+    {
+        "id": "cd1598b6720398d7",
+        "type": "subflow",
+        "name": "Save to Firestore",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 100,
+                "y": 180,
+                "wires": [
+                    {
+                        "id": "e6b01702f17aa6d0"
+                    },
+                    {
+                        "id": "16d222bf52ffa1ab"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 760,
+                "y": 180,
+                "wires": [
+                    {
+                        "id": "8e513beca32fad61",
+                        "port": 0
+                    },
+                    {
+                        "id": "e8a295e22257e9e8",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#F3B567",
+        "icon": "node-red/leveldb.png"
+    },
+    {
+        "id": "28b3d06769e78c37",
+        "type": "subflow",
+        "name": "Blink Hue Light",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 100,
+                "y": 100,
+                "wires": [
+                    {
+                        "id": "a880c2d76289a4de"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [],
+        "meta": {},
+        "color": "#E2D96E",
+        "icon": "font-awesome/fa-lightbulb-o"
+    },
+    {
+        "id": "95ffb7ea25c71d96",
+        "type": "subflow",
+        "name": "Get Weather Data",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 120,
+                "y": 100,
+                "wires": [
+                    {
+                        "id": "5f9de7cc20ef09d8"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 460,
+                "y": 220,
+                "wires": [
+                    {
+                        "id": "11caf7ef687ea307",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#F3B567",
+        "icon": "font-awesome/fa-sun-o"
+    },
+    {
+        "id": "12a4cfbee31209b8",
+        "type": "subflow",
+        "name": "Save to influxdb",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 100,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "b86a95eea6b4062a"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [],
+        "meta": {},
+        "color": "#F3B567",
+        "icon": "font-awesome/fa-database"
+    },
+    {
+        "id": "b66129edfa50363e",
+        "type": "group",
+        "z": "1527ce12d99c5df4",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "f818cca59432f33b",
+            "11f29fd47c848fb3",
+            "530d3741b4b63ca2",
+            "7d41837849668fd6"
+        ],
+        "x": 54,
+        "y": 59,
+        "w": 512,
+        "h": 222
+    },
+    {
+        "id": "6e55731581081225",
+        "type": "group",
+        "z": "1527ce12d99c5df4",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "c4cc6d1aa9812664",
+            "45122134de45bc2e",
+            "fcc1abc383409883"
+        ],
+        "x": 614,
+        "y": 59,
+        "w": 432,
+        "h": 142
+    },
+    {
+        "id": "47e4bc20941f0f9b",
+        "type": "group",
+        "z": "1527ce12d99c5df4",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "7132144915f8f604",
+            "0ad6a829cce668b0",
+            "7bf125ee8a1bf2e6",
+            "daadfc557438dca9",
+            "1669cb92cc7fc1a6",
+            "b2b3b6d3841ffad9",
+            "04d8855bef4d4909"
+        ],
+        "x": 54,
+        "y": 319,
+        "w": 512,
+        "h": 302
+    },
+    {
+        "id": "c55683503309dcb1",
+        "type": "group",
+        "z": "7743896d4583b199",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "ab586260d49545e7",
+            "13278dba38e36c9c",
+            "0e019680de957e9a",
+            "cfe9033b84230fd6",
+            "afb9fe11b1767f95"
+        ],
+        "x": 54,
+        "y": 39,
+        "w": 912,
+        "h": 142
+    },
+    {
+        "id": "7eb4775c680a54d2",
+        "type": "group",
+        "z": "1527ce12d99c5df4",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "4533440ab63098b9",
+            "245b8385810c8334",
+            "369ba6d180b0437f",
+            "4617db9659ce3ffb",
+            "a88b7a4a5aa27f92",
+            "5a9d074f8dfb73ef",
+            "9ba10ad6793c1892"
+        ],
+        "x": 614,
+        "y": 259,
+        "w": 692,
+        "h": 222
+    },
+    {
+        "id": "d2e5a64b4cdfcfc0",
+        "type": "group",
+        "z": "7743896d4583b199",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "883d9a1763de5a0c",
+            "6e4a1d7f696db0fd",
+            "47d920ded806c575",
+            "b5e92b6069175361",
+            "9b554a93d324e105",
+            "65b277a5138999b7",
+            "47eb7060d8baa02f",
+            "44f595d9acf55218",
+            "2be4a6fa338d0234",
+            "b3a1dd8f099ee297",
+            "3fae81562621feaf",
+            "14b424ece69f07df",
+            "a1b2d634037ab4d0",
+            "6d64e46a0d463739",
+            "c88760233c21b701"
+        ],
+        "x": 54,
+        "y": 219,
+        "w": 992,
+        "h": 602
+    },
+    {
+        "id": "5da6ed6bc9d5d992",
+        "type": "mqtt-broker",
+        "name": "test.mosquitto.org",
+        "broker": "test.mosquitto.org",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "307832d7f4d220e5",
+        "type": "firebase admin",
+        "name": "firebase"
+    },
+    {
+        "id": "b216bc7e60572e06",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "database",
+        "name": "influxdb",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://influxdb:8086",
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "45651b8e8389243a",
+        "type": "switch",
+        "z": "328f1eeedab9c465",
+        "name": "",
+        "property": "device_info",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 450,
+        "y": 120,
+        "wires": [
+            [],
+            [
+                "88a3e7e98741e268",
+                "e1ded9c5f5b3ade7"
+            ]
+        ]
+    },
+    {
+        "id": "65cae0bc0f39d22f",
+        "type": "function",
+        "z": "328f1eeedab9c465",
+        "name": "Set Device Info",
+        "func": "// From device id (uuid) we set name and group\n// of recognised devices\nlet allDevicesInfo = {\n    \"2C:F4:32:57:64:93\": {\n        \"name\": \"test-1\",\n        \"group\": \"test-group\"\n    },\n    \"2C:F4:32:57:48:44\": {\n        \"name\": \"nico-dracaena-massangeana\",\n        \"group\": \"nico-living-group\"\n    },\n    \"44:17:93:0D:C4:73\": {\n        \"name\": \"nico-peace-lily\",\n        \"group\": \"nico-living-group\"\n    }\n}\n\nlet device_id = msg.payload.device_id\nlet device_info = allDevicesInfo[device_id]\nif (device_info) {\n    msg.device_info = { \n        \"device_id\": device_id, \n        ...device_info\n    }\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 120,
+        "wires": [
+            [
+                "45651b8e8389243a"
+            ]
+        ]
+    },
+    {
+        "id": "88a3e7e98741e268",
+        "type": "debug",
+        "z": "328f1eeedab9c465",
+        "name": "Unrecognised Device",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "\"Unrecognised Device\"",
+        "targetType": "jsonata",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "e1ded9c5f5b3ade7",
+        "type": "debug",
+        "z": "328f1eeedab9c465",
+        "name": "Payload",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "efe723a887b9ed42",
+        "type": "http request",
+        "z": "2ed4f6cd7dc69bd6",
+        "name": "Post to Airtable",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://api.airtable.com/v0/appppp1O8A8USuSAu/grouped_measurements",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "bearer",
+        "senderr": false,
+        "headers": [],
+        "x": 280,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "616fe93cf29e4467",
+        "type": "debug",
+        "z": "2ed4f6cd7dc69bd6",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "jsonata",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "48ab174cf821deac",
+        "type": "function",
+        "z": "2ed4f6cd7dc69bd6",
+        "name": "Set Payload for Airtable",
+        "func": "msg.payload = {\n    \"records\":[\n        {\n            \"fields\": {\n                \"device_id\": msg.device_info.device_id,\n                \"device_name\": msg.device_info.name,\n                \"device_group\": msg.device_info.group,\n                \"moisture_percent\": Number(msg.moisture.percent),\n                \"moisture_value\": Number(msg.moisture.value),\n                \"need_water\": msg.needWater ? \"YES\" : \"NO\"\n            }\n            \n        }\n    ]\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 100,
+        "wires": [
+            [
+                "616fe93cf29e4467",
+                "efe723a887b9ed42"
+            ]
+        ]
+    },
+    {
+        "id": "8e513beca32fad61",
+        "type": "Firestore out",
+        "z": "cd1598b6720398d7",
+        "name": "",
+        "collection": "Measurements",
+        "document": "",
+        "operation": "add",
+        "admin": "307832d7f4d220e5",
+        "eject": false,
+        "x": 430,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e6b01702f17aa6d0",
+        "type": "function",
+        "z": "cd1598b6720398d7",
+        "name": "Set Measurement Payload for Firestore",
+        "func": "msg.payload = {\n    \"created\": new Date().toISOString(),\n    \"device_info\": msg.device_info,\n    \"moisture\": msg.moisture,\n    \"weather\": msg.weather\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 80,
+        "wires": [
+            [
+                "8e513beca32fad61"
+            ]
+        ]
+    },
+    {
+        "id": "e8a295e22257e9e8",
+        "type": "Firestore out",
+        "z": "cd1598b6720398d7",
+        "name": "",
+        "collection": "Plants",
+        "document": "",
+        "operation": "update",
+        "admin": "307832d7f4d220e5",
+        "eject": false,
+        "x": 440,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "16d222bf52ffa1ab",
+        "type": "function",
+        "z": "cd1598b6720398d7",
+        "name": "Set NeedWater Payload for Firestore",
+        "func": "msg.payload = {\n    \"device_info\": msg.device_info,\n    \"need_water \": msg.moisture.need_water \n}\nmsg.firestore = {\n    document: msg.device_info.name\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 300,
+        "wires": [
+            [
+                "e8a295e22257e9e8"
+            ]
+        ]
+    },
+    {
+        "id": "066c4e8152078978",
+        "type": "function",
+        "z": "28b3d06769e78c37",
+        "name": "Hue - Lights - BLINK",
+        "func": "msg.payload = {\"alert\": \"lselect\"}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 220,
+        "wires": [
+            [
+                "da2f142d2f0145cb"
+            ]
+        ]
+    },
+    {
+        "id": "da2f142d2f0145cb",
+        "type": "http request",
+        "z": "28b3d06769e78c37",
+        "name": "API - PUT",
+        "method": "PUT",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://192.168.1.67/api/Je4cCAvZ3Hszwyi59jfmV2SvWRZRTyfL6XH13uxD/lights/{{light.id}}/state",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 520,
+        "y": 280,
+        "wires": [
+            [
+                "4e0e39f1ea86dae6"
+            ]
+        ]
+    },
+    {
+        "id": "159a9d51c379d2df",
+        "type": "function",
+        "z": "28b3d06769e78c37",
+        "name": "OFF",
+        "func": "msg.payload = {\"on\":false}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 400,
+        "wires": [
+            [
+                "41b877b4caeaa174"
+            ]
+        ]
+    },
+    {
+        "id": "41b877b4caeaa174",
+        "type": "http request",
+        "z": "28b3d06769e78c37",
+        "name": "API - PUT",
+        "method": "PUT",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://192.168.1.67/api/Je4cCAvZ3Hszwyi59jfmV2SvWRZRTyfL6XH13uxD/lights/{{light.id}}/state",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 520,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4e0e39f1ea86dae6",
+        "type": "delay",
+        "z": "28b3d06769e78c37",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 520,
+        "y": 340,
+        "wires": [
+            [
+                "159a9d51c379d2df"
+            ]
+        ]
+    },
+    {
+        "id": "e67dd08d01cb7110",
+        "type": "http request",
+        "z": "28b3d06769e78c37",
+        "name": "API - PUT",
+        "method": "PUT",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://192.168.1.67/api/Je4cCAvZ3Hszwyi59jfmV2SvWRZRTyfL6XH13uxD/lights/{{light.id}}/state",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 520,
+        "y": 160,
+        "wires": [
+            [
+                "066c4e8152078978"
+            ]
+        ],
+        "icon": "node-red/light.svg"
+    },
+    {
+        "id": "1f6b69a727ed558c",
+        "type": "function",
+        "z": "28b3d06769e78c37",
+        "name": "ON - {light.colorHue}",
+        "func": "msg.payload = { \"on\": true, \"sat\": 255, \"bri\": 255, \"hue\": msg.light.color_hue}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 100,
+        "wires": [
+            [
+                "e67dd08d01cb7110"
+            ]
+        ]
+    },
+    {
+        "id": "52e4fc62f5afc650",
+        "type": "comment",
+        "z": "28b3d06769e78c37",
+        "name": "Params",
+        "info": "### Params\n\nmsg.light = {\n    \"id\":7,\n    \"color_hue\":21159\n}",
+        "x": 130,
+        "y": 40,
+        "wires": [],
+        "icon": "node-red/inject.svg"
+    },
+    {
+        "id": "a880c2d76289a4de",
+        "type": "switch",
+        "z": "28b3d06769e78c37",
+        "name": "",
+        "property": "light",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 250,
+        "y": 100,
+        "wires": [
+            [
+                "1f6b69a727ed558c"
+            ]
+        ]
+    },
+    {
+        "id": "5f9de7cc20ef09d8",
+        "type": "http request",
+        "z": "95ffb7ea25c71d96",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://api.openweathermap.org/data/2.5/weather?appid=b022a825b8e7d4883ddecf8aef2cfb9d&q=london&units=metric",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 290,
+        "y": 100,
+        "wires": [
+            [
+                "a75ce6f6d9c757ba"
+            ]
+        ]
+    },
+    {
+        "id": "11caf7ef687ea307",
+        "type": "function",
+        "z": "95ffb7ea25c71d96",
+        "name": "Weather Data",
+        "func": "msg.weather = {\n    temp: msg.payload.main.temp,\n    humidity: msg.payload.main.humidity,\n    clouds: msg.payload.clouds.all\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a75ce6f6d9c757ba",
+        "type": "json",
+        "z": "95ffb7ea25c71d96",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 310,
+        "y": 160,
+        "wires": [
+            [
+                "11caf7ef687ea307"
+            ]
+        ]
+    },
+    {
+        "id": "0e7e193f45b8d157",
+        "type": "comment",
+        "z": "95ffb7ea25c71d96",
+        "name": "API Documentation",
+        "info": "https://openweathermap.org/current",
+        "x": 190,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "fe5b129fb6636041",
+        "type": "influxdb out",
+        "z": "12a4cfbee31209b8",
+        "influxdb": "b216bc7e60572e06",
+        "name": "influxdb",
+        "measurement": "humidity",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "smart-lords",
+        "bucket": "gardenr",
+        "x": 440,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "b86a95eea6b4062a",
+        "type": "function",
+        "z": "12a4cfbee31209b8",
+        "name": "Influx Payload",
+        "func": "msg.payload = [\n    {\n        percent: msg.moisture.percent,\n        value: msg.moisture.value,\n        need_water: msg.moisture.need_water,\n        temp: msg.weather.temp,\n        humidity: msg.weather.humidity,\n        clouds: msg.weather.clouds\n    },\n    {\n        device_name: msg.device_info.name\n    }\n]\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 80,
+        "wires": [
+            [
+                "fe5b129fb6636041"
+            ]
+        ]
+    },
+    {
+        "id": "ab586260d49545e7",
+        "type": "mqtt in",
+        "z": "7743896d4583b199",
+        "g": "c55683503309dcb1",
+        "name": "Subscribe Connected",
+        "topic": "gardenr/connected",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "5da6ed6bc9d5d992",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 140,
+        "wires": [
+            [
+                "afb9fe11b1767f95"
+            ]
+        ]
+    },
+    {
+        "id": "13278dba38e36c9c",
+        "type": "debug",
+        "z": "7743896d4583b199",
+        "g": "c55683503309dcb1",
+        "name": "Connected",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "device_info",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 850,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "0e019680de957e9a",
+        "type": "subflow:328f1eeedab9c465",
+        "z": "7743896d4583b199",
+        "g": "c55683503309dcb1",
+        "name": "Set Device Info",
+        "env": [],
+        "x": 620,
+        "y": 140,
+        "wires": [
+            [
+                "13278dba38e36c9c"
+            ]
+        ]
+    },
+    {
+        "id": "cfe9033b84230fd6",
+        "type": "comment",
+        "z": "7743896d4583b199",
+        "g": "c55683503309dcb1",
+        "name": "Connection",
+        "info": "",
+        "x": 150,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "883d9a1763de5a0c",
+        "type": "mqtt out",
+        "z": "7743896d4583b199",
+        "g": "d2e5a64b4cdfcfc0",
+        "name": "Request Humidity",
+        "topic": "gardenr/humidity/request",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "5da6ed6bc9d5d992",
+        "x": 510,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "6e4a1d7f696db0fd",
+        "type": "mqtt in",
+        "z": "7743896d4583b199",
+        "g": "d2e5a64b4cdfcfc0",
+        "name": "Subscribe Humidity",
+        "topic": "gardenr/humidity/value",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "5da6ed6bc9d5d992",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 420,
+        "wires": [
+            [
+                "3fae81562621feaf"
+            ]
+        ]
+    },
+    {
+        "id": "47d920ded806c575",
+        "type": "subflow:328f1eeedab9c465",
+        "z": "7743896d4583b199",
+        "g": "d2e5a64b4cdfcfc0",
+        "name": "Set Device Info",
+        "env": [],
+        "x": 420,
+        "y": 480,
+        "wires": [
+            [
+                "b5e92b6069175361",
+                "14b424ece69f07df"
+            ]
+        ]
+    },
+    {
+        "id": "b5e92b6069175361",
+        "type": "function",
+        "z": "7743896d4583b199",
+        "g": "d2e5a64b4cdfcfc0",
+        "name": "Set Moisture Data",
+        "func": "var needWater = false\nif (msg.payload.soil_moisture_percent < 20) {\n    needWater = true\n}\n\nmsg.moisture = {\n    \"percent\": Number(msg.payload.soil_moisture_percent),\n    \"value\": Number(msg.payload.soil_moisture_value),\n    \"need_water\": needWater\n}\n    \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 540,
+        "wires": [
+            [
+                "c88760233c21b701"
+            ]
+        ],
+        "icon": "font-awesome/fa-flask"
+    },
+    {
+        "id": "9b554a93d324e105",
+        "type": "subflow:2ed4f6cd7dc69bd6",
+        "z": "7743896d4583b199",
+        "g": "d2e5a64b4cdfcfc0",
+        "name": "",
+        "env": [],
+        "x": 680,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "65b277a5138999b7",
+        "type": "subflow:cd1598b6720398d7",
+        "z": "7743896d4583b199",
+        "g": "d2e5a64b4cdfcfc0",
+        "name": "",
+        "env": [],
+        "x": 930,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "47eb7060d8baa02f",
+        "type": "comment",
+        "z": "7743896d4583b199",
+        "g": "d2e5a64b4cdfcfc0",
+        "name": "Humidity",
+        "info": "",
+        "x": 140,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "44f595d9acf55218",
+        "type": "subflow:28b3d06769e78c37",
+        "z": "7743896d4583b199",
+        "g": "d2e5a64b4cdfcfc0",
+        "name": "",
+        "env": [],
+        "x": 940,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "2be4a6fa338d0234",
+        "type": "subflow:95ffb7ea25c71d96",
+        "z": "7743896d4583b199",
+        "g": "d2e5a64b4cdfcfc0",
+        "name": "",
+        "env": [],
+        "x": 670,
+        "y": 720,
+        "wires": [
+            [
+                "6d64e46a0d463739"
+            ]
+        ]
+    },
+    {
+        "id": "b3a1dd8f099ee297",
+        "type": "function",
+        "z": "7743896d4583b199",
+        "g": "d2e5a64b4cdfcfc0",
+        "name": "Set Hue Light",
+        "func": "const LIGHT = {\n    DESK: 7,\n    LIVING: 10,\n    BEDROOM: 4\n}\n\nconst COLOR_HUE = {\n    RED: 1,\n    GREEN: 21159\n}\n\nlet lightID\n\nswitch(msg.device_info.name) {\n  case \"nico-peace-lily\":\n    lightID = LIGHT.DESK;\n    break;\n  case \"nico-dracaena-massangeana\":\n    lightID = LIGHT.LIVING;\n    break;\n  default:\n    break;\n}\n\nmsg.light = {\n    id: lightID,\n    color_hue: msg.moisture.need_water\n        ? COLOR_HUE.RED \n        : COLOR_HUE.GREEN\n}\n\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 600,
+        "wires": [
+            [
+                "44f595d9acf55218"
+            ]
+        ],
+        "icon": "font-awesome/fa-lightbulb-o"
+    },
+    {
+        "id": "3fae81562621feaf",
+        "type": "json",
+        "z": "7743896d4583b199",
+        "g": "d2e5a64b4cdfcfc0",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 450,
+        "y": 420,
+        "wires": [
+            [
+                "47d920ded806c575"
+            ]
+        ]
+    },
+    {
+        "id": "afb9fe11b1767f95",
+        "type": "json",
+        "z": "7743896d4583b199",
+        "g": "c55683503309dcb1",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 410,
+        "y": 140,
+        "wires": [
+            [
+                "0e019680de957e9a"
+            ]
+        ]
+    },
+    {
+        "id": "14b424ece69f07df",
+        "type": "debug",
+        "z": "7743896d4583b199",
+        "g": "d2e5a64b4cdfcfc0",
+        "name": "Debug Info",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "a1b2d634037ab4d0",
+        "type": "inject",
+        "z": "7743896d4583b199",
+        "g": "d2e5a64b4cdfcfc0",
+        "name": "Request Humidity - By Hour",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "0 0-23 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "str",
+        "x": 220,
+        "y": 320,
+        "wires": [
+            [
+                "883d9a1763de5a0c"
+            ]
+        ]
+    },
+    {
+        "id": "6d64e46a0d463739",
+        "type": "subflow:12a4cfbee31209b8",
+        "z": "7743896d4583b199",
+        "g": "d2e5a64b4cdfcfc0",
+        "name": "",
+        "x": 940,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "c88760233c21b701",
+        "type": "switch",
+        "z": "7743896d4583b199",
+        "g": "d2e5a64b4cdfcfc0",
+        "name": "Filter Test Group",
+        "property": "device_info.group",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "test-group",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 420,
+        "y": 600,
+        "wires": [
+            [
+                "b3a1dd8f099ee297",
+                "9b554a93d324e105",
+                "2be4a6fa338d0234"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c4cc6d1aa9812664",
+        "type": "subflow:28b3d06769e78c37",
+        "z": "1527ce12d99c5df4",
+        "g": "6e55731581081225",
+        "name": "",
+        "env": [],
+        "x": 940,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "45122134de45bc2e",
+        "type": "inject",
+        "z": "1527ce12d99c5df4",
+        "g": "6e55731581081225",
+        "name": "Desk green",
+        "props": [
+            {
+                "p": "light",
+                "v": "{\"id\":7,\"color_hue\":21159}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 730,
+        "y": 160,
+        "wires": [
+            [
+                "c4cc6d1aa9812664"
+            ]
+        ]
+    },
+    {
+        "id": "f818cca59432f33b",
+        "type": "mqtt out",
+        "z": "1527ce12d99c5df4",
+        "g": "b66129edfa50363e",
+        "name": "Send Message",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "5da6ed6bc9d5d992",
+        "x": 460,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "11f29fd47c848fb3",
+        "type": "inject",
+        "z": "1527ce12d99c5df4",
+        "g": "b66129edfa50363e",
+        "name": "Device Connection",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "gardenr/connected",
+        "payload": "{\"device_id\":\"a1\"}",
+        "payloadType": "json",
+        "x": 210,
+        "y": 160,
+        "wires": [
+            [
+                "f818cca59432f33b"
+            ]
+        ]
+    },
+    {
+        "id": "530d3741b4b63ca2",
+        "type": "inject",
+        "z": "1527ce12d99c5df4",
+        "g": "b66129edfa50363e",
+        "name": "Unknown Connection",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "gardenr/connected",
+        "payload": "{\"device_id\":\"a2\"}",
+        "payloadType": "json",
+        "x": 200,
+        "y": 240,
+        "wires": [
+            [
+                "f818cca59432f33b"
+            ]
+        ]
+    },
+    {
+        "id": "7d41837849668fd6",
+        "type": "comment",
+        "z": "1527ce12d99c5df4",
+        "g": "b66129edfa50363e",
+        "name": "Connection",
+        "info": "",
+        "x": 150,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "fcc1abc383409883",
+        "type": "comment",
+        "z": "1527ce12d99c5df4",
+        "g": "6e55731581081225",
+        "name": "Lights",
+        "info": "",
+        "x": 690,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "7132144915f8f604",
+        "type": "mqtt in",
+        "z": "1527ce12d99c5df4",
+        "g": "47e4bc20941f0f9b",
+        "name": "Simulate Deice Value",
+        "topic": "gardenr/humidity/request",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "5da6ed6bc9d5d992",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0ad6a829cce668b0",
+        "type": "mqtt out",
+        "z": "1527ce12d99c5df4",
+        "g": "47e4bc20941f0f9b",
+        "name": "Send Message",
+        "topic": "gardenr/humidity/value",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "5da6ed6bc9d5d992",
+        "x": 460,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "7bf125ee8a1bf2e6",
+        "type": "change",
+        "z": "1527ce12d99c5df4",
+        "g": "47e4bc20941f0f9b",
+        "name": "Set Message",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{ \"device_id\" : \"a1\", \"soil_moisture_value\" : 720, \"soil_moisture_percent\" : 30 }",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 520,
+        "wires": [
+            [
+                "0ad6a829cce668b0"
+            ]
+        ]
+    },
+    {
+        "id": "daadfc557438dca9",
+        "type": "comment",
+        "z": "1527ce12d99c5df4",
+        "g": "47e4bc20941f0f9b",
+        "name": "Humidity",
+        "info": "",
+        "x": 140,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "1669cb92cc7fc1a6",
+        "type": "inject",
+        "z": "1527ce12d99c5df4",
+        "g": "47e4bc20941f0f9b",
+        "name": "Simulate Manual",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 200,
+        "y": 580,
+        "wires": [
+            [
+                "7bf125ee8a1bf2e6"
+            ]
+        ]
+    },
+    {
+        "id": "4533440ab63098b9",
+        "type": "influxdb out",
+        "z": "1527ce12d99c5df4",
+        "g": "7eb4775c680a54d2",
+        "influxdb": "b216bc7e60572e06",
+        "name": "Influx out",
+        "measurement": "humidity2",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "s",
+        "retentionPolicyV18Flux": "",
+        "org": "smart-lords",
+        "bucket": "gardenr",
+        "x": 1120,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "245b8385810c8334",
+        "type": "inject",
+        "z": "1527ce12d99c5df4",
+        "g": "7eb4775c680a54d2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 720,
+        "y": 360,
+        "wires": [
+            [
+                "369ba6d180b0437f"
+            ]
+        ]
+    },
+    {
+        "id": "369ba6d180b0437f",
+        "type": "function",
+        "z": "1527ce12d99c5df4",
+        "g": "7eb4775c680a54d2",
+        "name": "Payload",
+        "func": "msg.payload = {\n    percent: 1,\n    value: 1,\n    need_water: 1\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 360,
+        "wires": [
+            [
+                "4533440ab63098b9"
+            ]
+        ]
+    },
+    {
+        "id": "4617db9659ce3ffb",
+        "type": "function",
+        "z": "1527ce12d99c5df4",
+        "g": "7eb4775c680a54d2",
+        "name": "Payload - Data",
+        "func": "const measurements = [\n  {\n    \"AutoID\": 64,\n    \"created\": \"8 October 2022 01:00\",\n    \"Soil Moisture Percent\": 52,\n    \"Soil Moisture Value\": 656\n  },\n  {\n    \"AutoID\": 63,\n    \"created\": \"8 October 2022 00:00\",\n    \"Soil Moisture Percent\": 51,\n    \"Soil Moisture Value\": 661\n  },\n  {\n    \"AutoID\": 61,\n    \"created\": \"7 October 2022 23:00\",\n    \"Soil Moisture Percent\": 51,\n    \"Soil Moisture Value\": 661\n  }\n]\n\nconst measurementsToInfluxdb = measurements.map(measurement => {\n    return { \n        measurement: \"humidity2\",\n        fields: {\n            percent: measurement[\"Soil Moisture Percent\"],\n            value: measurement[\"Soil Moisture Value\"],\n            need_water: false\n        },\n        tags:{\n            device_name: \"nico-dracaena-massangeana\"\n        },\n        timestamp: new Date(measurement[\"created\"])\n    }\n})\n\nmsg.payload = measurementsToInfluxdb\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 440,
+        "wires": [
+            [
+                "a88b7a4a5aa27f92"
+            ]
+        ]
+    },
+    {
+        "id": "a88b7a4a5aa27f92",
+        "type": "influxdb batch",
+        "z": "1527ce12d99c5df4",
+        "g": "7eb4775c680a54d2",
+        "influxdb": "b216bc7e60572e06",
+        "precision": "",
+        "retentionPolicy": "",
+        "name": "Influx batch",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "smart-lords",
+        "bucket": "gardenr",
+        "x": 1210,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "5a9d074f8dfb73ef",
+        "type": "comment",
+        "z": "1527ce12d99c5df4",
+        "g": "7eb4775c680a54d2",
+        "name": "Influx",
+        "info": "Delete data from docker SSH\n\n curl --request POST \"http://localhost:8086/api/v2/delete?org=c4227f58f33353b7&bucket=gardenr\"   --header 'Authorization: Token J-d4FPovbTj6P2v9rPEQivOj7zCGVpPywh9E4GQiYXKs9V-bbDWTeLy4GN5Oi5XiMmpyuilfW0e0sBY0lt8OGg=='   --header 'Content-Type: application/json'   --data '{\n    \"start\": \"1970-01-01T00:00:00Z\",\n    \"stop\": \"2025-12-31T23:59:00Z\",\n    \"predicate\": \"_measurement=\\\"humidity\\\"\"\n  }'",
+        "x": 690,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "9ba10ad6793c1892",
+        "type": "inject",
+        "z": "1527ce12d99c5df4",
+        "g": "7eb4775c680a54d2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 720,
+        "y": 440,
+        "wires": [
+            [
+                "4617db9659ce3ffb"
+            ]
+        ]
+    },
+    {
+        "id": "04d8855bef4d4909",
+        "type": "mqtt out",
+        "z": "1527ce12d99c5df4",
+        "g": "47e4bc20941f0f9b",
+        "name": "Request Humidity",
+        "topic": "gardenr/humidity/request",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "5da6ed6bc9d5d992",
+        "x": 450,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "b2b3b6d3841ffad9",
+        "type": "inject",
+        "z": "1527ce12d99c5df4",
+        "g": "47e4bc20941f0f9b",
+        "name": "Req humidity for Device",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "44:17:93:0D:C4:73",
+        "payloadType": "str",
+        "x": 200,
+        "y": 420,
+        "wires": [
+            [
+                "04d8855bef4d4909"
+            ]
+        ]
+    }
+]
