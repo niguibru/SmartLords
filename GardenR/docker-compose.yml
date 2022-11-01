@@ -1,4 +1,5 @@
 services:
+  # Smartlords
   node-red:
     image: nodered/node-red:latest
     container_name: node-red
@@ -8,6 +9,8 @@ services:
       - smart-lords
     volumes:
       - node-red-data:/data
+    restart: unless-stopped
+    
   influxdb:
     image: influxdb:latest
     container_name: influxdb
@@ -24,18 +27,73 @@ services:
       #- DOCKER_INFLUXDB_INIT_PASSWORD=happyFlower2022
       #- DOCKER_INFLUXDB_INIT_ORG=smart-lords
       #- DOCKER_INFLUXDB_INIT_BUCKET=gardenr
+    restart: unless-stopped
+   
+   
+  # Monitoring/Loging
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - smart-lords
+    volumes:
+      - prometheus-config:/config
+      - prometheus-data:/prometheus
+    command:
+      - "--config.file=/config/prometheus.yml"
+    restart: unless-stopped
+      
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: node_exporter
+    networks:
+      - smart-lords
+    volumes:
+      - '/:/host:ro,rslave'
+    restart: unless-stopped
+    
+  cadvisor:
+    image: zcube/cadvisor:latest
+    container_name: cadvisor
+    privileged: true
+    expose:
+      - 8080
+    networks:
+      - smart-lords
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    devices:
+      - /dev/kmsg
+    ipc: shareable
+    security_opt:
+      - label=disable
+    restart: unless-stopped
+
+  # Data Visualisation
   grafana:
-    image: grafana/grafana:latest 
+    image: grafana/grafana:latest
     container_name: grafana
     ports:
       - "3000:3000"
     networks:
       - smart-lords
+    volumes:
+      - grafana-data:/var/lib/grafana
+    restart: unless-stopped
 
 volumes:
   node-red-data:
   influxdb-data-var:
   influxdb-data-etc:
-
+  prometheus-config:
+  prometheus-data:
+  grafana-data:
+  
 networks:
   smart-lords:
