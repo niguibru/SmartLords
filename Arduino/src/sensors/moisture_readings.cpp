@@ -1,5 +1,9 @@
 #include <Arduino.h>
 #include "moisture_readings.h"
+#include "./utils/utils.h"
+
+// Debug
+const String context = "Moisture Sensor";
 
 // SENSOR PIN
 #define SENSOR_IN 0
@@ -22,18 +26,15 @@ int calculatePercent(int value) {
 }
 
 SoilMoistureReading getSoilMoistureReading() {
-  Serial.println("-> Reading - Soil Moisture: ");
+  printDebugTitle(context, "Moisture Read");
+
   SoilMoistureReading soilMoistureReading;
-  
+
   soilMoistureReading.value = analogRead(SENSOR_IN);
-  Serial.print("*  Value: ");
-  Serial.println(soilMoistureReading.value);
+  printDebugKeyValue("value", String(soilMoistureReading.value));
 
   soilMoistureReading.percentage = calculatePercent(soilMoistureReading.value);
-  Serial.print("*  Percentage: ");
-  Serial.print(soilMoistureReading.percentage);
-  Serial.println("%");
+  printDebugKeyValue("percentage", String(soilMoistureReading.percentage));
 
   return soilMoistureReading;
 }
-
