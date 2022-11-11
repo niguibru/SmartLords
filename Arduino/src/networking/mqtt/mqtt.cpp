@@ -32,7 +32,7 @@ void deliverToSubscribers(char* topic) {
         DynamicJsonDocument json(1024);
         json["soil_moisture_value"] = String(soilMoistureReading.value);
         json["soil_moisture_percent"] = String(soilMoistureReading.percentage);  
-        publishJson(client, (char*) pub_mqttStatus, json);
+        publishJson(client, (char*) pub_moisture, json);
     };
 }
 
