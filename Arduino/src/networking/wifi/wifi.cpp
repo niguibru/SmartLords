@@ -4,20 +4,16 @@
 #include "./utils/utils.h"
 
 // Debug
-const String context = "WiFi";
+const String logContext = "WiFi";
 
-//---- WiFi settings
-const char* wifi_name = "BT-NMCJWC";
-const char* wifi_password = "bLXRnYmP9FJQR6";
-
-void wifi_setup() {
+void wifi_setup(const char * name, const char * pass) {
   delay(10);
 
-  printDebugTitle(context, "Connecting");
-  printDebugKeyValue("Network", wifi_name);
+  printDebugTitle(logContext, "Connecting");
+  printDebugKeyValue("Network", name);
 
   WiFi.enableInsecureWEP(true);
-  WiFi.begin(wifi_name, wifi_password);
+  WiFi.begin(name, pass);
 
   Serial.print("   .");
   while (WiFi.status() != WL_CONNECTED) {
@@ -28,6 +24,6 @@ void wifi_setup() {
 
   randomSeed(micros());
 
-  printDebugTitle(context, "Connected");
+  printDebugTitle(logContext, "Connected");
   printDebugKeyValue("IP Address", WiFi.localIP().toString());
 }
