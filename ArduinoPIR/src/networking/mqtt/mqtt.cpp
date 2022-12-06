@@ -5,27 +5,19 @@
 #include "./utils/utils.h"
 #include "./utils/vars.h"
 #include "./utils/mqttUtils.h"
-#include "./led/led.h"
 
 // Debug
 const String context = "MQTT";
 
 // Subscibers
 const char* statusRequestSubscriber = "gardenr/status/request";
-const char* subscriber_led_rainbow = "led/rainbow";
-const char* subscriber_led_left = "led/left";
-const char* subscriber_led_right = "led/right";
-const char* subscriber_led_off = "led/off";
 
 // Publishers
 const char* pub_mqttStatus = "gardenr/status";
+const char* pub_pirMotionDetected = "home/pir";
 
 void subscribe() {
     client.subscribe(statusRequestSubscriber);
-    client.subscribe(subscriber_led_rainbow);
-    client.subscribe(subscriber_led_left);
-    client.subscribe(subscriber_led_right);
-    client.subscribe(subscriber_led_off);
 }
 
 void deliverToSubscribers(char* topic) {
@@ -33,18 +25,11 @@ void deliverToSubscribers(char* topic) {
         DynamicJsonDocument json(1024);
         publishJson(client, (char*) pub_mqttStatus, json);
     }
-    if ((String) topic == subscriber_led_off) {
-        setState(OFF);
-    }
-    if ((String) topic == subscriber_led_left) {
-        setState(LEFT);
-    }
-    if ((String) topic == subscriber_led_right) {
-        setState(RIGHT);
-    }
-    if ((String) topic == subscriber_led_rainbow) {
-        setState(RAINBOW);
-    }
+}
+
+void send_pirMotionDetected() {
+    DynamicJsonDocument json(1024);
+    publishJson(client, (char*) pub_pirMotionDetected, json);
 }
 
 void callback(char* topic, byte* payload, unsigned int length) {

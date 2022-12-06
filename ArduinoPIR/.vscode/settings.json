@@ -19,6 +19,5 @@
         "unordered_map": "cpp",
         "vector": "cpp",
         "regex": "cpp"
-    },
-    "C_Cpp.errorSquiggles": "Disabled"
+    }
 }
