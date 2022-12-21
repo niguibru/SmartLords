@@ -27,8 +27,9 @@ void deliverToSubscribers(char* topic) {
     }
 }
 
-void send_pirMotionDetected() {
+void send_pirMotionDetected(String pirID) {
     DynamicJsonDocument json(1024);
+    json["pir_id"] = pirID;
     publishJson(client, (char*) pub_pirMotionDetected, json);
 }
 

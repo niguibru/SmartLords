@@ -5,10 +5,10 @@
 #define pin_pir1 5
 #define pin_pir2 4
 
-static String name_pir1 = "PIR-1";
+static String name_pir1 = "PIR-LEFT";
 int val_pir1 = 0;
 bool motionState_pir1 = false;
-static String name_pir2 = "PIR-2";
+static String name_pir2 = "PIR-RIGHT";
 int val_pir2 = 0;
 bool motionState_pir2 = false;
 
@@ -23,7 +23,7 @@ void debug(uint8_t val, bool &state, String pirName) {
       printDebugTitle(pirName, "Motion detected");
       printDebugKeyValue("Time (milis)", millis());
       state = true;
-      send_pirMotionDetected();
+      send_pirMotionDetected(pirName);
     }
   } else {
     if (state == true) {

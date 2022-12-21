@@ -3,14 +3,14 @@
 #include "./utils/utils.h"
 
 // Definitions
-#define NUM_LEDS  180 // LED Qty: 60LEDs/M or 300LEDs/5M
+#define NUM_LEDS  29 + 29 + 29 // LED Qty: 60LEDs/M or 300LEDs/5M
 #define LED_PIN   4
 CRGB leds[NUM_LEDS];
 
 // Status
 uint8_t hue = 0;
 LedState ledState = OFF;
-CRGB defaultColorCode = CRGB(29, 2, 36);
+CRGB defaultColorCode = CRGB(143, 20, 41);
 
 void setState(LedState newState) {
   ledState = newState;
@@ -34,14 +34,14 @@ void led_loop() {
     FastLED.clear();
     FastLED.show();
   }
-  if (ledState == LEFT) {
-    FastLED.clear();
-    setColor(1, 120, defaultColorCode);
-    FastLED.show();
-  }
   if (ledState == RIGHT) {
     FastLED.clear();
-    setColor(60, NUM_LEDS, defaultColorCode);
+    setColor(1, 90, defaultColorCode);
+    FastLED.show();
+  }
+  if (ledState == LEFT) {
+    FastLED.clear();
+    setColor(80, NUM_LEDS, defaultColorCode);
     FastLED.show();
   }
   if (ledState == RAINBOW) {
