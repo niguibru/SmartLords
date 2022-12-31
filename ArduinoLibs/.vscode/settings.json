@@ -1,0 +1,24 @@
+{
+    "files.associations": {
+        "sensor_readings h": "cpp",
+        "cstddef": "cpp",
+        "array": "cpp",
+        "compare": "cpp",
+        "functional": "cpp",
+        "ostream": "cpp",
+        "ranges": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp",
+        "algorithm": "cpp",
+        "string_view": "cpp",
+        "initializer_list": "cpp",
+        "string": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "unordered_map": "cpp",
+        "vector": "cpp",
+        "regex": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}
