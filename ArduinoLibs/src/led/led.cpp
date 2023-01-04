@@ -1,4 +1,4 @@
-#include "Led.h"
+#include "led.h"
 
 Led::Led(byte pin) {
   _pin = pin;
@@ -20,11 +20,7 @@ void Led::off() {
 
 void Led::blink() {
   digitalWrite(_pin, HIGH);
-  delay(2000);
+  delay(200);
   digitalWrite(_pin, LOW);
-  delay(2000);
-  digitalWrite(_pin, HIGH);
-  delay(2000);
-  digitalWrite(_pin, LOW);
-  delay(2000);
+  delay(200);
 }

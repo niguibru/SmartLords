@@ -6,8 +6,8 @@
 #include "./led/led.h"
 
 //---- WiFi settings
-const char* wifi_name = "BT-NMCJWC";
-const char* wifi_password = "bLXRnYmP9FJQR6";
+const char* wifi_name = "WiFi Distefano "; //"BT-NMCJWC";
+const char* wifi_password = "argentina2015"; //"bLXRnYmP9FJQR6";
 
 void setup() {
   initial_setup();

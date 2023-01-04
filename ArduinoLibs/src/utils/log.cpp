@@ -5,6 +5,14 @@ void log_setup() {
   Serial.println("");
 }
 
+void log_debug(String value) {
+  Serial.print("--------------");
+  Serial.println("--------------");
+  Serial.println(value);
+  Serial.print("--------------");
+  Serial.println("--------------");
+}
+
 void log_title(String context, String title) {
   Serial.print(">> ");
   Serial.print(context);

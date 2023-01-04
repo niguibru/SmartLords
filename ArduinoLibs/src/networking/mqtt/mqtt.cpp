@@ -1,6 +1,4 @@
 #include "mqtt.h"
-#include <ESP8266WiFi.h>
-#include <PubSubClient.h>
 #include "mqttSettings.h"
 #include "./utils/log.h"
 #include "./utils/vars.h"
@@ -33,13 +31,22 @@ void callback(char* topic, byte* payload, unsigned int length) {
     log_keyValue("Topic", topic);
     log_keyValue("Payload", payloadString);
 
+    StaticJsonDocument<1000> jsonPayload;
+    DeserializationError error = deserializeJson(jsonPayload, payloadString);
+    if (error) {
+        log_title(context, "deserializeJson failed");
+        log_keyValue("Error", error.f_str());
+        return;
+    }
+
     // Stop if there is a payload and the mac address is not the same as the device
-    if (payloadString != "" && WiFi.macAddress() != payloadString) {
+    const char* deviceID = jsonPayload["device_id"];
+    if (payloadString != "" && WiFi.macAddress() != deviceID) {
       log_title(context, "Message not for this device");
       return;
     }
 
-    _messageArrivedCallack(topic);
+    _messageArrivedCallack(topic, jsonPayload);
 }
 
 void reconnect() {
@@ -58,7 +65,7 @@ void reconnect() {
     }
 }
 
-void mqtt_setup(String topicsToSubscribe[], int topicsToSubscribeSize, messageArrivedCallack messageArrived){
+void mqtt_setup(const String topicsToSubscribe[], int topicsToSubscribeSize, messageArrivedCallack messageArrived){
     _topicsToSubscribeCount = topicsToSubscribeSize;
     for (int i=0; i < _topicsToSubscribeCount; i++) {
         _topicsToSubscribe[i] = topicsToSubscribe[i];

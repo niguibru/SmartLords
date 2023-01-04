@@ -6,10 +6,10 @@ class Led {
   
   private:
     byte _pin;
+    void init();
     
   public:
     Led(byte pin);
-    void init();
     void on();
     void off();
     void blink();

@@ -1,6 +1,8 @@
 #include <Arduino.h>
 #include "./utils/log.h"
 #include "./led/led.h"
+#include "./infrared/ir_receiver.h"
+#include "./infrared/ir_led.h"
 #include "./networking/wifi/wifi.h"
 #include "./networking/ota/ota.h"
 #include "./networking/mqtt/mqtt.h"
@@ -8,24 +10,43 @@
 // LED
 Led led_builtin(LED_BUILTIN);
 
+// IR
+IR_Receiver ir_receiver(2);
+IR_Led ir_led(0);
+
 // MQTT
-String MQTT_SUBSCRIBER_LED_OFF = "led/off";
-String MQTT_SUBSCRIBER_LED_ON = "led/on";
-String MQTT_SUBSCRIBER_LED_BLINK = "led/blink";
-String mqtt_topicsToSubscribe[] = { 
+const String MQTT_SUBSCRIBER_LED_OFF = "led/off";
+const String MQTT_SUBSCRIBER_LED_ON = "led/on";
+const String MQTT_SUBSCRIBER_LED_BLINK = "led/blink";
+const String MQTT_SUBSCRIBER_IR_SEND = "infrared/send";
+const String MQTT_TOPICS_TO_SUBSCRIBE[] = { 
     MQTT_SUBSCRIBER_LED_OFF, 
     MQTT_SUBSCRIBER_LED_ON, 
-    MQTT_SUBSCRIBER_LED_BLINK
+    MQTT_SUBSCRIBER_LED_BLINK,
+    MQTT_SUBSCRIBER_IR_SEND
 };
-void mqtt_messageArrived(String topic) {
+void mqtt_messageArrived(String topic, StaticJsonDocument<1000> jsonPayload) {
     if (topic == MQTT_SUBSCRIBER_LED_OFF) {
         led_builtin.off();
     }
     if (topic == MQTT_SUBSCRIBER_LED_ON) {
         led_builtin.on();
     }
-    if (topic == MQTT_SUBSCRIBER_LED_BLINK ) {
+    if (topic == MQTT_SUBSCRIBER_LED_BLINK) {
         led_builtin.blink();
+    }
+    if (topic == MQTT_SUBSCRIBER_IR_SEND) {
+        JsonArray arr = jsonPayload["data"].as<JsonArray>();
+        int count = arr.size();
+        
+        uint16_t rawData[count] = {};
+        int i = 0;
+        for (JsonVariant value : arr) {
+            rawData[i] = value.as<int>();
+            i++;
+        }
+                
+        ir_led.send(rawData, count);
     }
 }
 
@@ -35,10 +56,13 @@ void setup() {
     // Networking
     wifi_setup("WiFi Distefano ", "argentina2015");
     ota_setup();
-    mqtt_setup(mqtt_topicsToSubscribe, sizeof(mqtt_topicsToSubscribe), mqtt_messageArrived);
+    mqtt_setup(MQTT_TOPICS_TO_SUBSCRIBE, 4, mqtt_messageArrived);
 }
 
 void loop() {
     // Networking
     mqtt_loop();
+
+    // IR_RECEIVER
+    ir_receiver.loop();
 }
