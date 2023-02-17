@@ -14,6 +14,7 @@ class IR_Led {
   public:
     IR_Led(byte pin);
     void send(uint16_t rawData[], int count);
+    void send(JsonArray jsonArray);
 
 };
 

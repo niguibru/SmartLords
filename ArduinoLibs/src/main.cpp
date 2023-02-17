@@ -36,17 +36,8 @@ void mqtt_messageArrived(String topic, StaticJsonDocument<1000> jsonPayload) {
         led_builtin.blink();
     }
     if (topic == MQTT_SUBSCRIBER_IR_SEND) {
-        JsonArray arr = jsonPayload["data"].as<JsonArray>();
-        int count = arr.size();
-        
-        uint16_t rawData[count] = {};
-        int i = 0;
-        for (JsonVariant value : arr) {
-            rawData[i] = value.as<int>();
-            i++;
-        }
-                
-        ir_led.send(rawData, count);
+        JsonArray jsonArray = jsonPayload["data"].as<JsonArray>();
+        ir_led.send(jsonArray);
     }
 }
 
