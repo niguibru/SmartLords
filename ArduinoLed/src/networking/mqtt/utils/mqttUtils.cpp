@@ -1,25 +1,25 @@
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
-#include "./utils/utils.h"
+#include "./utils/log.h"
 
 // Debug
 const String context = "MQTT";
 
-void publishJson(PubSubClient &client, char* topic, DynamicJsonDocument json) {
+void publishJson(PubSubClient &client, const String topic, DynamicJsonDocument json) {
     json["device_id"] = WiFi.macAddress();
     json["ip_address"] = WiFi.localIP().toString();  
 
     char buffer[256];
     serializeJson(json, buffer);
-    if (client.publish(topic, buffer)) {
-        printDebugTitle(context, "Message published");
-        printDebugKeyValue("Topic", topic);
-        printDebugKeyValue("Payload", buffer);
+    if (client.publish(topic.c_str(), buffer)) {
+        log_title(context, "Message published");
+        log_keyValue("Topic", topic);
+        log_keyValue("Payload", buffer);
     } else {
-        printDebugTitle(context, "Error publishing");
-        printDebugKeyValue("Topic", topic);
-        printDebugKeyValue("Payload", buffer);
+        log_title(context, "Error publishing");
+        log_keyValue("Topic", topic);
+        log_keyValue("Payload", buffer);
     }
 }
 

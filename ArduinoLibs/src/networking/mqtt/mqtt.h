@@ -6,7 +6,7 @@
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
 
-typedef void (*messageArrivedCallack)(String topic, StaticJsonDocument<1000> jsonPayload);
+typedef void (*messageArrivedCallack)(String topic, JsonObject jsonPayload);
 
 void mqtt_setup(const String topicsToSubscribe[], int topicsToSubscribeSize, messageArrivedCallack messageArrived);
 void mqtt_loop();

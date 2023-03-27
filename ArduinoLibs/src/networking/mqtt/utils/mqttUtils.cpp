@@ -6,13 +6,13 @@
 // Debug
 const String context = "MQTT";
 
-void publishJson(PubSubClient &client, char* topic, DynamicJsonDocument json) {
+void publishJson(PubSubClient &client, const String topic, DynamicJsonDocument json) {
     json["device_id"] = WiFi.macAddress();
     json["ip_address"] = WiFi.localIP().toString();  
 
     char buffer[256];
     serializeJson(json, buffer);
-    if (client.publish(topic, buffer)) {
+    if (client.publish(topic.c_str(), buffer)) {
         log_title(context, "Message published");
         log_keyValue("Topic", topic);
         log_keyValue("Payload", buffer);
