@@ -33,6 +33,10 @@ void publishStatus() {
     publishJson(client, MQTT_PUBLISHER_STATUS, json);
 }
 
+void mqtt_publish(const String topic, DynamicJsonDocument json) {
+    publishJson(client, topic, json);
+}
+
 void callback(char* topic, byte* payload, unsigned int length) {
     String payloadString = buildPayloadString(payload, length);
 

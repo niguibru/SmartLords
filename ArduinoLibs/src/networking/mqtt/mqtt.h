@@ -10,5 +10,6 @@ typedef void (*messageArrivedCallack)(String topic, JsonObject jsonPayload);
 
 void mqtt_setup(const String topicsToSubscribe[], int topicsToSubscribeSize, messageArrivedCallack messageArrived);
 void mqtt_loop();
+void mqtt_publish(const String topic, DynamicJsonDocument json);
 
 #endif

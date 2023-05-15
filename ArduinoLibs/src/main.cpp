@@ -1,10 +1,11 @@
 #include <Arduino.h>
 #include "./utils/log.h"
-#include "./led/led.h"
-#include "./led/ledStrip.h"
 #include "./networking/wifi/wifi.h"
 #include "./networking/ota/ota.h"
 #include "./networking/mqtt/mqtt.h"
+#include "./led/led.h"
+#include "./led/ledStrip.h"
+#include "./sensors/moisture.h"
 
 // Utils
 #define arraySize(arg) ((unsigned int) (sizeof (arg) / sizeof (arg [0])))
@@ -24,11 +25,12 @@ LedStrip led_strip(0);
 // MQTT
 const String MQTT_SUBSCRIBER_LED = "led";
 const String MQTT_SUBSCRIBER_LED_STRIP = "led-strip";
-const String MQTT_SUBSCRIBER_MOISTURE_EMIT = "moisture-sensor/state/emit";
+const String MQTT_SUBSCRIBER_MOISTURE_PUBLISH = "moisture-sensor/state/publish";
+const String MQTT_PUBLISHER_MOISTURE = "moisture-sensor/state";
 const String MQTT_TOPICS_TO_SUBSCRIBE[] = { 
     MQTT_SUBSCRIBER_LED,
     MQTT_SUBSCRIBER_LED_STRIP,
-    MQTT_SUBSCRIBER_MOISTURE_EMIT
+    MQTT_SUBSCRIBER_MOISTURE_PUBLISH
 };
 void mqtt_messageArrived(String topic, JsonObject jsonPayload) {
     JsonObject jsonState = jsonPayload["set_state"].as<JsonObject>();
@@ -40,10 +42,8 @@ void mqtt_messageArrived(String topic, JsonObject jsonPayload) {
         led_strip.state.setFromJson(jsonState);
     }
     // Moisture    
-    if (topic == MQTT_SUBSCRIBER_MOISTURE_EMIT) {
-        log_title("moisture", MQTT_SUBSCRIBER_MOISTURE_EMIT);
-        log_keyValue("jsonPayload", jsonPayload);
-        // led_strip.state.setFromJson(jsonState);
+    if (topic == MQTT_SUBSCRIBER_MOISTURE_PUBLISH) {
+        mqtt_publish(MQTT_PUBLISHER_MOISTURE, getSoilMoistureState());
     }
 }
 
