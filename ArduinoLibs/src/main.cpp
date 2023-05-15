@@ -24,17 +24,26 @@ LedStrip led_strip(0);
 // MQTT
 const String MQTT_SUBSCRIBER_LED = "led";
 const String MQTT_SUBSCRIBER_LED_STRIP = "led-strip";
+const String MQTT_SUBSCRIBER_MOISTURE_EMIT = "moisture-sensor/state/emit";
 const String MQTT_TOPICS_TO_SUBSCRIBE[] = { 
     MQTT_SUBSCRIBER_LED,
-    MQTT_SUBSCRIBER_LED_STRIP
+    MQTT_SUBSCRIBER_LED_STRIP,
+    MQTT_SUBSCRIBER_MOISTURE_EMIT
 };
 void mqtt_messageArrived(String topic, JsonObject jsonPayload) {
     JsonObject jsonState = jsonPayload["set_state"].as<JsonObject>();
+    // LED    
     if (topic == MQTT_SUBSCRIBER_LED) {
         led_builtin.executeAction(jsonState);
     }
     if (topic == MQTT_SUBSCRIBER_LED_STRIP) {
         led_strip.state.setFromJson(jsonState);
+    }
+    // Moisture    
+    if (topic == MQTT_SUBSCRIBER_MOISTURE_EMIT) {
+        log_title("moisture", MQTT_SUBSCRIBER_MOISTURE_EMIT);
+        log_keyValue("jsonPayload", jsonPayload);
+        // led_strip.state.setFromJson(jsonState);
     }
 }
 
