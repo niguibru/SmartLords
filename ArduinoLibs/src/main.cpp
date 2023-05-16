@@ -5,40 +5,42 @@
 #include "./networking/wifi/wifi.h"
 #include "./networking/ota/ota.h"
 #include "./networking/mqtt/mqtt.h"
-#include "./led/led.h"
+#include "./led/ledBuiltin.h"
 #include "./led/ledStrip.h"
 #include "./sensors/moisture.h"
 
-// Networking
+// LED BUILTIN
+LedBuiltin led_builtin = LedBuiltin();
+const String MQTT_SUBSCRIBER_LED_BUILTIN_STATE_UPDATE = "led-builtin/state/update";
+// LED STRIP
+LedStrip led_strip = LedStrip(4);
+const String MQTT_SUBSCRIBER_LED_STRIP_STATE_UPDATE = "led-strip/state/update";
+// MOISTURE SENSOR
+MoistureSensor moisture_sensor = MoistureSensor(0);
+const String MQTT_SUBSCRIBER_MOISTURE_PUBLISH = "moisture-sensor/state/publish";
+const String MQTT_PUBLISHER_MOISTURE_STATE = "moisture-sensor/state";
+
+// NETWORKING
 Wifi wifi = Wifi();
 OTAUpdate ota = OTAUpdate();
 MQTT mqtt = MQTT();
 
-// Modules
-Led led_builtin = Led(LED_BUILTIN);
-// LedStrip led_strip = LedStrip(0);
-MoistureSensor moisture_sensor = MoistureSensor(0);
-
-// MQTT
-const String MQTT_SUBSCRIBER_LED = "led";
-const String MQTT_SUBSCRIBER_LED_STRIP = "led-strip";
-const String MQTT_SUBSCRIBER_MOISTURE_PUBLISH = "moisture-sensor/state/publish";
-const String MQTT_PUBLISHER_MOISTURE_STATE = "moisture-sensor/state";
+// NETWORKING - MQTT
 const String MQTT_TOPICS_TO_SUBSCRIBE[] = { 
-    MQTT_SUBSCRIBER_LED,
-    MQTT_SUBSCRIBER_LED_STRIP,
+    MQTT_SUBSCRIBER_LED_BUILTIN_STATE_UPDATE,
+    MQTT_SUBSCRIBER_LED_STRIP_STATE_UPDATE,
     MQTT_SUBSCRIBER_MOISTURE_PUBLISH
 };
 void mqtt_messageArrived(String topic, JsonObject jsonPayload) {
-    JsonObject jsonState = jsonPayload["set_state"].as<JsonObject>();
-    // LED    
-    if (topic == MQTT_SUBSCRIBER_LED) {
-        led_builtin.executeAction(jsonState);
+    // LED BUILTIN
+    if (topic == MQTT_SUBSCRIBER_LED_BUILTIN_STATE_UPDATE) {
+        led_builtin.updateState(jsonPayload["state"]);
     }
-    if (topic == MQTT_SUBSCRIBER_LED_STRIP) {
-        // led_strip.state.setFromJson(jsonState);
+    // LED STRIP
+    if (topic == MQTT_SUBSCRIBER_LED_STRIP_STATE_UPDATE) {
+        led_strip.updateState(jsonPayload["state"]);
     }
-    // Moisture 
+    // MOISTURE SENSOR
     if (topic == MQTT_SUBSCRIBER_MOISTURE_PUBLISH) {
         mqtt.publish(MQTT_PUBLISHER_MOISTURE_STATE, moisture_sensor.getState());
     }
@@ -47,20 +49,23 @@ void mqtt_messageArrived(String topic, JsonObject jsonPayload) {
 void setup() {
     log_setup();
 
-    // Networking
+    // NETWORKING
     wifi.setup(wifi_name, wifi_password);
     ota.setup();
     mqtt.setup(MQTT_TOPICS_TO_SUBSCRIBE, arraySize(MQTT_TOPICS_TO_SUBSCRIBE), mqtt_messageArrived);
 
-    // Modules
+    // LED BUILTIN
     led_builtin.setup();
-    // led_strip.setup();
+    // LED STRIP
+    led_strip.setup();
 }
 
 void loop() {
-    // Networking
+    // NETWORKING
     mqtt.loop();
 
-    // Modules
-    // led_strip.loop();
+    // LED BUILTIN
+    led_builtin.loop();
+    // LED STRIP
+    led_strip.loop();
 }

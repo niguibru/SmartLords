@@ -6,7 +6,6 @@ const String context = "LED_STRIP";
 
 // Definitions
 #define NUM_LEDS 29 // 29 + 29 + 29 // LED Qty: 60LEDs/M or 300LEDs/5M
-#define LED_PIN 4
 CRGB leds[NUM_LEDS];
 
 // Status
@@ -21,7 +20,23 @@ void LedStrip::setup() {
   log_title(context, "Setup");
   log_keyValue("Pin", _pin);
 
-  FastLED.addLeds<WS2812B, LED_PIN, GRB>(leds, NUM_LEDS);
+  switch (_pin) {
+    case 3:
+      FastLED.addLeds<WS2812B, 3, GRB>(leds, NUM_LEDS);
+      break;
+
+    case 4:
+      FastLED.addLeds<WS2812B, 4, GRB>(leds, NUM_LEDS);
+      break;
+
+    case 5:
+      FastLED.addLeds<WS2812B, 5, GRB>(leds, NUM_LEDS);
+      break;
+
+    default:
+      Serial.println("Unsupported Pin");
+      break;
+  }
   FastLED.setBrightness(50);
 }
 
@@ -51,13 +66,13 @@ void setRainbow(int startLed, int endLed) {
 
 void LedStrip::loop() {
   switch (state.value) {
-    case ON: {
+    case LS_ON: {
       switch (state.color) {
-        case RAINBOW: {
+        case LS_RAINBOW: {
           setRainbow(state.start, state.end);
           break;
         }
-        case RED: {
+        case LS_RED: {
           FastLED.clear();
           setColor(state.start, state.end, defaultColorCode);
           FastLED.show();
@@ -66,7 +81,7 @@ void LedStrip::loop() {
       }
       break;
     }
-    case OFF: {
+    case LS_OFF: {
       FastLED.clear();
       FastLED.show();
       break;
@@ -74,29 +89,28 @@ void LedStrip::loop() {
   }
 }
 
-// LedState
-void LedState::setFromJson(JsonObject jsonState) {
+void LedStrip::updateState(JsonObject jsonState) {
   log_title(context, "Set State");
 
   // value
   const String parsedValue = jsonState["value"].as<String>();
-  if (parsedValue == "on") { value = ON; } 
-  else if (parsedValue == "off") { value = OFF; }
-  log_keyValue("Value", value);
+  if (parsedValue == "on") { state.value = LS_ON; } 
+  else if (parsedValue == "off") { state.value = LS_OFF; }
+  log_keyValue("Value", state.value);
 
   // color
   const String parsedColor = jsonState["color"].as<String>();
-  if (parsedColor == "rainbow") { color = RAINBOW; } 
-  else if (parsedColor == "red") { color = RED; } 
-  log_keyValue("Color", color);
+  if (parsedColor == "rainbow") { state.color = LS_RAINBOW; } 
+  else if (parsedColor == "red") { state.color = LS_RED; } 
+  log_keyValue("Color", state.color);
 
   // start
   const int parsedStart = jsonState["start"].as<int>();
-  if (parsedStart > 0) { start = parsedStart; } 
-  log_keyValue("Start", start);
+  if (parsedStart > 0) { state.start = parsedStart; } 
+  log_keyValue("Start", state.start);
 
   // end
   const int parsedEnd = jsonState["end"].as<int>();
-  if (parsedEnd > 0) { end = parsedEnd; } 
-  log_keyValue("End", end);
+  if (parsedEnd > 0) { state.end = parsedEnd; } 
+  log_keyValue("End", state.end);
 }
