@@ -5,7 +5,6 @@
 #include "./infrared/ir_receiver.h"
 #include "./infrared/ir_led.h"
 #include "./networking/wifi/wifi.h"
-#include "./networking/ota/ota.h"
 #include "./networking/mqtt/mqtt.h"
 
 // WiFi Credentials

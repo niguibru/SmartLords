@@ -1,39 +1,7 @@
 {
-	"folders": [
-		{
-			"path": ".."
-		},
-		{
-			"name": "Arduino",
-			"path": "../../Arduino"
-		}
-	],
-	"settings": {
-		"files.associations": {
-			"sensor_readings h": "cpp",
-			"cstddef": "cpp",
-			"array": "cpp",
-			"compare": "cpp",
-			"functional": "cpp",
-			"ostream": "cpp",
-			"ranges": "cpp",
-			"tuple": "cpp",
-			"type_traits": "cpp",
-			"utility": "cpp",
-			"algorithm": "cpp",
-			"string_view": "cpp",
-			"initializer_list": "cpp",
-			"string": "cpp",
-			"deque": "cpp",
-			"list": "cpp",
-			"unordered_map": "cpp",
-			"vector": "cpp",
-			"regex": "cpp",
-			"typeinfo": "cpp",
-			"*.tcc": "cpp",
-			"optional": "cpp",
-			"istream": "cpp",
-			"system_error": "cpp"
-		}
-	}
+    "folders": [
+        {
+            "path": ".."
+        }
+    ]
 }

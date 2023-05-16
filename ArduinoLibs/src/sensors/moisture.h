@@ -1,10 +1,27 @@
+#ifndef MoistureSensorState_H
+#define MoistureSensorState_H
+
 #include <Arduino.h>
 #include <ArduinoJson.h>
 
-typedef struct {
-    int value;
-    int percentage;
-} SoilMoistureReading;
+class MoistureSensorState {
+  public:
+    int value = 0;
+    int percentage = 0;
+};
 
-SoilMoistureReading getSoilMoistureReading();
-DynamicJsonDocument getSoilMoistureState();
+class MoistureSensor {
+  
+  private:
+    byte _pin;
+    // State
+    MoistureSensorState _state = MoistureSensorState();
+    void updateState();
+
+  public:
+    MoistureSensor(byte pin);
+    // State
+    DynamicJsonDocument getState();
+};
+
+#endif

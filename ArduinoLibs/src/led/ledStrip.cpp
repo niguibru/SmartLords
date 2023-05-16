@@ -1,5 +1,4 @@
 #include "ledStrip.h"
-#include <FastLED.h>
 #include "./utils/log.h"
 
 // Debug

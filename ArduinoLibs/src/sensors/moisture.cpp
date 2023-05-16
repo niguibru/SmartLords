@@ -1,12 +1,8 @@
-#include <Arduino.h>
 #include "moisture.h"
 #include "./utils/log.h"
 
 // Debug
 const String context = "Moisture Sensor";
-
-// SENSOR PIN
-#define SENSOR_IN 0
 
 // CALIBRATION VALUES
 const int DRY_MAX = 860;
@@ -25,25 +21,24 @@ int calculatePercent(int value) {
     return soilMoisturePercent;
 }
 
-SoilMoistureReading getSoilMoistureReading() {
-    log_title(context, "Moisture Read");
-
-    SoilMoistureReading soilMoistureReading;
-
-    soilMoistureReading.value = analogRead(SENSOR_IN);
-    log_keyValue("value", String(soilMoistureReading.value));
-
-    soilMoistureReading.percentage = calculatePercent(soilMoistureReading.value);
-    log_keyValue("percentage", String(soilMoistureReading.percentage));
-
-    return soilMoistureReading;
+MoistureSensor::MoistureSensor(byte pin) {
+    _pin = pin;
 }
 
-DynamicJsonDocument getSoilMoistureState() {
-    SoilMoistureReading soilMoistureReading = getSoilMoistureReading();
-    DynamicJsonDocument json(1024);
-    json["state"]["value"] = String(soilMoistureReading.value);
-    json["state"]["percent"] = String(soilMoistureReading.percentage);  
+void MoistureSensor::updateState() {
+    log_title(context, "Moisture Read");
 
+    _state.value = analogRead(_pin);
+    _state.percentage = calculatePercent(_state.value);
+
+    log_keyValue("value", String(_state.value));
+    log_keyValue("percentage", String(_state.percentage));
+}
+
+DynamicJsonDocument MoistureSensor::getState() {
+    updateState();
+    DynamicJsonDocument json(1024);
+    json["state"]["value"] = String(_state.value);
+    json["state"]["percent"] = String(_state.percentage);  
     return json;
 }

@@ -1,6 +1,11 @@
-#ifndef ota_H
-#define ota_H
+#ifndef OTAUpdate_H
+#define OTAUpdate_H
 
-void ota_setup();
+class OTAUpdate {
+
+    public:
+        void setup();
+
+};
 
 #endif

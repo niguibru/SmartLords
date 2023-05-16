@@ -10,7 +10,9 @@
 // Utils
 #define arraySize(arg) ((unsigned int) (sizeof (arg) / sizeof (arg [0])))
 
-// WiFi Credentials
+// Networking
+Wifi wifi = Wifi();
+OTAUpdate ota = OTAUpdate();
 // Nico Wifi
 const char* wifi_name = "BT-NMCJWC";
 const char* wifi_password = "bLXRnYmP9FJQR6";
@@ -20,7 +22,8 @@ const char* wifi_password = "bLXRnYmP9FJQR6";
 
 // LED
 Led led_builtin(LED_BUILTIN);
-LedStrip led_strip(0);
+// LedStrip led_strip(0);
+MoistureSensor moisture_sensor(0);
 
 // MQTT
 const String MQTT_SUBSCRIBER_LED = "led";
@@ -39,11 +42,11 @@ void mqtt_messageArrived(String topic, JsonObject jsonPayload) {
         led_builtin.executeAction(jsonState);
     }
     if (topic == MQTT_SUBSCRIBER_LED_STRIP) {
-        led_strip.state.setFromJson(jsonState);
+        // led_strip.state.setFromJson(jsonState);
     }
-    // Moisture    
+    // Moisture 
     if (topic == MQTT_SUBSCRIBER_MOISTURE_PUBLISH) {
-        mqtt_publish(MQTT_PUBLISHER_MOISTURE, getSoilMoistureState());
+        mqtt_publish(MQTT_PUBLISHER_MOISTURE, moisture_sensor.getState());
     }
 }
 
@@ -51,13 +54,13 @@ void setup() {
     log_setup();
 
     // Networking
-    wifi_setup(wifi_name, wifi_password);
-    ota_setup();
+    wifi.setup(wifi_name, wifi_password);
+    ota.setup();
     mqtt_setup(MQTT_TOPICS_TO_SUBSCRIBE, arraySize(MQTT_TOPICS_TO_SUBSCRIBE), mqtt_messageArrived);
 
     // LED
     led_builtin.setup();
-    led_strip.setup();
+    // led_strip.setup();
 }
 
 void loop() {
@@ -65,5 +68,5 @@ void loop() {
     mqtt_loop();
 
     // LED
-    led_strip.loop();
+    // led_strip.loop();
 }

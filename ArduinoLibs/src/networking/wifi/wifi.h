@@ -1,6 +1,13 @@
-#ifndef WIFI_H
-#define WIFI_H
+#ifndef WiFi_H
+#define WiFi_H
 
-void wifi_setup(const char * name, const char * pass);
+#include <ESP8266WiFi.h>
+
+class Wifi {
+
+    public:
+        void setup(const char * name, const char * pass);
+
+};
 
 #endif

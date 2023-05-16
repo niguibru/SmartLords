@@ -1,8 +1,17 @@
+#include "ota.h"
+#include "./utils/log.h"
 #include <AsyncElegantOTA.h>
 
-AsyncWebServer server(80);
+// Debug
+const String logContext = "ota";
 
-void ota_setup() {
+const uint16_t port = 80;
+AsyncWebServer server = AsyncWebServer(port);
+
+void OTAUpdate::setup() {
+    log_title(logContext, "Enabling");
+    log_keyValue("Port", 80);
+
     AsyncElegantOTA.begin(&server);
     server.begin();
 }

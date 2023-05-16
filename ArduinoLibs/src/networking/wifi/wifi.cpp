@@ -1,11 +1,10 @@
 #include "wifi.h"
-#include <ESP8266WiFi.h>
 #include "./utils/log.h"
 
 // Debug
 const String logContext = "WiFi";
 
-void wifi_setup(const char * name, const char * pass) {
+void Wifi::setup(const char * name, const char * pass) {
   delay(10);
 
   log_title(logContext, "Connecting");

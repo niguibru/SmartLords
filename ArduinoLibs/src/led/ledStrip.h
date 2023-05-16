@@ -1,7 +1,9 @@
 #ifndef LedStrip_H
 #define LedStrip_H
+
 #include <Arduino.h>
 #include <ArduinoJson.h>
+#include <FastLED.h>
 
 enum LedValue { OFF, ON };
 enum LedColor { RED, RAINBOW };
