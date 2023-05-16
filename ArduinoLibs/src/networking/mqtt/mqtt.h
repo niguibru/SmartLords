@@ -1,5 +1,5 @@
-#ifndef mqtt_H
-#define mqtt_H
+#ifndef MQTT_H
+#define MQTT_H
 
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
@@ -8,8 +8,13 @@
 
 typedef void (*messageArrivedCallack)(String topic, JsonObject jsonPayload);
 
-void mqtt_setup(const String topicsToSubscribe[], int topicsToSubscribeSize, messageArrivedCallack messageArrived);
-void mqtt_loop();
-void mqtt_publish(const String topic, DynamicJsonDocument json);
+class MQTT {
+
+    public:
+        void setup(const String topicsToSubscribe[], int topicsToSubscribeSize, messageArrivedCallack messageArrived);
+        void loop();
+        void publish(const String topic, DynamicJsonDocument json);    
+
+};
 
 #endif

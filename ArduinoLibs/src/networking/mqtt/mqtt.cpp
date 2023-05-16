@@ -33,10 +33,6 @@ void publishStatus() {
     publishJson(client, MQTT_PUBLISHER_STATUS, json);
 }
 
-void mqtt_publish(const String topic, DynamicJsonDocument json) {
-    publishJson(client, topic, json);
-}
-
 void callback(char* topic, byte* payload, unsigned int length) {
     String payloadString = buildPayloadString(payload, length);
 
@@ -86,7 +82,7 @@ void reconnect() {
     }
 }
 
-void mqtt_setup(const String topicsToSubscribe[], int topicsToSubscribeSize, messageArrivedCallack messageArrived){
+void MQTT::setup(const String topicsToSubscribe[], int topicsToSubscribeSize, messageArrivedCallack messageArrived){
     _topicsToSubscribeCount = topicsToSubscribeSize;
     for (int i=0; i < _topicsToSubscribeCount; i++) {
         _topicsToSubscribe[i] = topicsToSubscribe[i];
@@ -99,9 +95,13 @@ void mqtt_setup(const String topicsToSubscribe[], int topicsToSubscribeSize, mes
     client.setCallback(callback);
 }
 
-void mqtt_loop() {
+void MQTT::loop() {
     if (!client.connected()) {
        reconnect();
     }
     client.loop();
+}
+
+void MQTT::publish(const String topic, DynamicJsonDocument json) {
+    publishJson(client, topic, json);
 }
