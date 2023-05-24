@@ -1,11 +1,14 @@
-#ifndef LOG_H
-#define LOG_H
+#ifndef Log_H
+#define Log_H
 
-#include <ArduinoJson.h>
+#include <Arduino.h>
 
-void log_setup();
-void log_title(String context, String title);
-void log_keyValue(String key, String value);
-void log_keyValue(String key, unsigned long value);
+class Log {
+    public:
+        static void setup();
+        static void title(String context, String title);
+        static void keyValue(String key, String value);
+        static void keyValue(String key, unsigned long value);
+};
 
 #endif

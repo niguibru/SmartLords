@@ -47,7 +47,7 @@ void mqtt_messageArrived(String topic, JsonObject jsonPayload) {
 }
 
 void setup() {
-    log_setup();
+    Log::setup();
 
     // NETWORKING
     wifi.setup(wifi_name, wifi_password);

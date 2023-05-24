@@ -3,14 +3,14 @@
 #include <AsyncElegantOTA.h>
 
 // Debug
-const String logContext = "ota";
+const String logContext = "OTAUpdate";
 
 const uint16_t port = 80;
 AsyncWebServer server = AsyncWebServer(port);
 
 void OTAUpdate::setup() {
-    log_title(logContext, "Enabling");
-    log_keyValue("Port", 80);
+    Log::title(logContext, "Enabling");
+    Log::keyValue("Port", 80);
 
     AsyncElegantOTA.begin(&server);
     server.begin();

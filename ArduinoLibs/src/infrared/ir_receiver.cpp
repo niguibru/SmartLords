@@ -11,7 +11,7 @@ IR_Receiver::IR_Receiver(byte pin) {
 
 void IR_Receiver::loop() {
     if (_irrecv.decode(&results)) {
-        log_title(context, "Value Received");
+        Log::title(context, "Value Received");
         serialPrintUint64(results.value, HEX);
         Serial.println(resultToHumanReadableBasic(&results));
         Serial.println(resultToSourceCode(&results));

@@ -19,10 +19,10 @@ int _topicsToSubscribeCount;
 messageArrivedCallack _messageArrivedCallack;
 
 void subscribe() {
-    log_title(context, "Subscribing");
+    Log::title(context, "Subscribing");
     for (int i=0; i < _topicsToSubscribeCount; i++) {
         const char* topic = _topicsToSubscribe[i].c_str();
-        log_keyValue("Topic", topic);
+        Log::keyValue("Topic", topic);
         client.subscribe(topic);
     }
     client.subscribe(MQTT_SUBSCRIBER_STATUS.c_str());
@@ -37,45 +37,45 @@ void callback(char* topic, byte* payload, unsigned int length) {
     String payloadString = buildPayloadString(payload, length);
 
     // LOG
-    log_title(context, "Message Arrived");
-    log_keyValue("Topic", topic);
-    log_keyValue("Payload", payloadString);
+    Log::title(context, "Message Arrived");
+    Log::keyValue("Topic", topic);
+    Log::keyValue("Payload", payloadString);
 
     // Deserialization
     StaticJsonDocument<1000> jsonPayload;
     DeserializationError error = deserializeJson(jsonPayload, payloadString);
     if (error) {
-        log_title(context, "deserializeJson failed");
-        log_keyValue("Error", error.f_str());
+        Log::title(context, "deserializeJson failed");
+        Log::keyValue("Error", error.f_str());
         return;
     }
     JsonObject jsonObject = jsonPayload.as<JsonObject>();
 
-    // Stop if there is a payload and the mac address is not the same as the device
+    // Stop if message is for the device
     const char* deviceID = jsonObject["device_id"];
-    if (payloadString != "" && WiFi.macAddress() != deviceID) {
-      log_title(context, "Message not for this device");
+    if (strcmp(deviceID, "#") == 0 || WiFi.macAddress() == deviceID) {
+        // Check for status topic
+        if ((String) topic == MQTT_SUBSCRIBER_STATUS) {
+            publishStatus();
+        } else {
+            // Callack
+            _messageArrivedCallack(topic, jsonObject);
+        }
+    } else {
+      Log::title(context, "Message not for this device");
       return;
     }
-
-    // Check for status topic
-    if ((String) topic == MQTT_SUBSCRIBER_STATUS) {
-        publishStatus();
-    }
-
-    // Callack
-    _messageArrivedCallack(topic, jsonObject);
 }
 
 void reconnect() {
     while (!client.connected()) { // Loop until we're reconnected
-        log_title(context, "Attempting MQTT connection..");
+        Log::title(context, "Attempting MQTT connection..");
         if (client.connect(createRandomClientId().c_str(), mqtt_user, mqtt_password)) {
-            log_keyValue("Status", "connected");
+            Log::keyValue("Status", "connected");
             publishStatus();
             subscribe();
         } else {
-            log_keyValue("Status", "Failed (try again in 5 seconds)");
+            Log::keyValue("Status", "Failed (try again in 5 seconds)");
             Serial.println(client.state());
             delay(5000); // Wait 5 seconds before retrying
         }

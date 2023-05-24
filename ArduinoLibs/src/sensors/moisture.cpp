@@ -26,13 +26,13 @@ MoistureSensor::MoistureSensor(byte pin) {
 }
 
 void MoistureSensor::updateState() {
-    log_title(context, "Moisture Read");
+    Log::title(context, "Moisture Read");
 
     _state.value = analogRead(_pin);
     _state.percentage = calculatePercent(_state.value);
 
-    log_keyValue("value", String(_state.value));
-    log_keyValue("percentage", String(_state.percentage));
+    Log::keyValue("value", String(_state.value));
+    Log::keyValue("percentage", String(_state.percentage));
 }
 
 DynamicJsonDocument MoistureSensor::getState() {

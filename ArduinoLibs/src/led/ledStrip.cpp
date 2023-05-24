@@ -17,8 +17,8 @@ LedStrip::LedStrip(byte pin) {
 }
 
 void LedStrip::setup() {
-  log_title(context, "Setup");
-  log_keyValue("Pin", _pin);
+  Log::title(context, "Setup");
+  Log::keyValue("Pin", _pin);
 
   switch (_pin) {
     case 3:
@@ -90,27 +90,27 @@ void LedStrip::loop() {
 }
 
 void LedStrip::updateState(JsonObject jsonState) {
-  log_title(context, "Set State");
+  Log::title(context, "Set State");
 
   // value
   const String parsedValue = jsonState["value"].as<String>();
   if (parsedValue == "on") { state.value = LS_ON; } 
   else if (parsedValue == "off") { state.value = LS_OFF; }
-  log_keyValue("Value", state.value);
+  Log::keyValue("Value", state.value);
 
   // color
   const String parsedColor = jsonState["color"].as<String>();
   if (parsedColor == "rainbow") { state.color = LS_RAINBOW; } 
   else if (parsedColor == "red") { state.color = LS_RED; } 
-  log_keyValue("Color", state.color);
+  Log::keyValue("Color", state.color);
 
   // start
   const int parsedStart = jsonState["start"].as<int>();
   if (parsedStart > 0) { state.start = parsedStart; } 
-  log_keyValue("Start", state.start);
+  Log::keyValue("Start", state.start);
 
   // end
   const int parsedEnd = jsonState["end"].as<int>();
   if (parsedEnd > 0) { state.end = parsedEnd; } 
-  log_keyValue("End", state.end);
+  Log::keyValue("End", state.end);
 }

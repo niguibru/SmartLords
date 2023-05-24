@@ -7,8 +7,8 @@ const String logContext = "WiFi";
 void Wifi::setup(const char * name, const char * pass) {
   delay(10);
 
-  log_title(logContext, "Connecting");
-  log_keyValue("Network", name);
+  Log::title(logContext, "Connecting");
+  Log::keyValue("Network", name);
 
   WiFi.enableInsecureWEP(true);
   WiFi.begin(name, pass);
@@ -22,6 +22,6 @@ void Wifi::setup(const char * name, const char * pass) {
 
   randomSeed(micros());
 
-  log_title(logContext, "Connected");
-  log_keyValue("IP Address", WiFi.localIP().toString());
+  Log::title(logContext, "Connected");
+  Log::keyValue("IP Address", WiFi.localIP().toString());
 }

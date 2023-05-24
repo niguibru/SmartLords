@@ -7,14 +7,14 @@ const String context = "LED";
 const byte pin = LED_BUILTIN;
 
 void LedBuiltin::setup() {
-  log_title(context, "Setup");
-  log_keyValue("Pin", pin);
+  Log::title(context, "Setup");
+  Log::keyValue("Pin", pin);
   pinMode(pin, OUTPUT);
   digitalWrite(pin, LOW);
 }
 
 void LedBuiltin::updateState(JsonObject jsonState) {
-  log_title(context, "Set State");
+  Log::title(context, "Set State");
 
   // value
   const String value = jsonState["value"].as<String>();
@@ -25,9 +25,9 @@ void LedBuiltin::updateState(JsonObject jsonState) {
   } else if (value == "blink") {
       state.value = LB_BLINK;
   } else {
-      log_keyValue("Error", "Unrecognized state");
+      Log::keyValue("Error", "Unrecognized state");
   }
-  log_keyValue("Value", state.value);
+  Log::keyValue("Value", state.value);
 
 }
 
